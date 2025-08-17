@@ -47,10 +47,10 @@ dev = [
 mhz14a = "mhz14a.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib"
-Repository = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib.git"
-Issues = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib/issues"
-Documentation = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib#readme"
+Homepage = "https://github.com/oaslananka/mhz14a-lib"
+Repository = "https://github.com/oaslananka/mhz14a-lib.git"
+Issues = "https://github.com/oaslananka/mhz14a-lib/issues"
+Documentation = "https://github.com/oaslananka/mhz14a-lib#readme"
 
 [tool.hatch.version]
 source = "vcs"
