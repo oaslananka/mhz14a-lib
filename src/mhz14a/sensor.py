@@ -1,7 +1,7 @@
 """MH-Z14A CO₂ sensor driver implementation."""
 
 import time
-from typing import Final, Optional
+from typing import Final, Optional, Tuple
 
 import serial
 
@@ -23,7 +23,7 @@ CMD_SET_RANGE: Final[int] = 0x99
 RANGE_2000: Final[int] = 2000
 RANGE_5000: Final[int] = 5000
 RANGE_10000: Final[int] = 10000
-VALID_RANGES: Final[tuple[int, ...]] = (RANGE_2000, RANGE_5000, RANGE_10000)
+VALID_RANGES: Final[Tuple[int, ...]] = (RANGE_2000, RANGE_5000, RANGE_10000)
 
 
 def _checksum(frame8: bytes) -> int:
