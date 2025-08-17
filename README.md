@@ -1,6 +1,6 @@
 # MH-Z14A Python Library
 
-[![CI](https://github.com/oaslananka/mhz14a/actions/workflows/ci.yml/badge.svg)](https://github.com/oaslananka/mhz14a/actions/workflows/ci.yml)
+[![CI](https://github.com/oaslananka/mhz14a-lib/actions/workflows/ci.yml/badge.svg)](https://github.com/oaslananka/mhz14a-lib/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/mhz14a.svg)](https://pypi.org/project/mhz14a/)
 [![Python versions](https://img.shields.io/pypi/pyversions/mhz14a.svg)](https://pypi.org/project/mhz14a/)
 
