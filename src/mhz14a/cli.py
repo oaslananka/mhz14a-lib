@@ -32,7 +32,7 @@ Examples:
   mhz14a --port /dev/mhz14a range --max 5000
         """
     )
-    
+
     parser.add_argument(
         "--port",
         default="/dev/mhz14a",
@@ -44,15 +44,15 @@ Examples:
         default=1.0,
         help="Serial timeout in seconds (default: 1.0)"
     )
-    
+
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
-    
+
     # read command
     subparsers.add_parser("read", help="Read CO₂ concentration")
-    
+
     # sample command
     sample_parser = subparsers.add_parser(
-        "sample", 
+        "sample",
         help="Take multiple CO₂ readings"
     )
     sample_parser.add_argument(
@@ -72,16 +72,16 @@ Examples:
         action="store_true",
         help="Output readings in JSON format"
     )
-    
+
     # zero command
     subparsers.add_parser(
-        "zero", 
+        "zero",
         help="Perform zero point calibration (400 ppm fresh air)"
     )
-    
+
     # span command
     span_parser = subparsers.add_parser(
-        "span", 
+        "span",
         help="Perform span calibration"
     )
     span_parser.add_argument(
@@ -90,19 +90,19 @@ Examples:
         required=True,
         help="Known CO₂ concentration for calibration"
     )
-    
+
     # abc command
     abc_parser = subparsers.add_parser(
-        "abc", 
+        "abc",
         help="Configure Automatic Baseline Correction"
     )
     abc_group = abc_parser.add_mutually_exclusive_group(required=True)
     abc_group.add_argument("--on", action="store_true", help="Enable ABC")
     abc_group.add_argument("--off", action="store_true", help="Disable ABC")
-    
+
     # range command
     range_parser = subparsers.add_parser(
-        "range", 
+        "range",
         help="Set measurement range"
     )
     range_parser.add_argument(
@@ -112,7 +112,7 @@ Examples:
         required=True,
         help="Maximum measurement range in ppm"
     )
-    
+
     return parser
 
 
@@ -128,27 +128,27 @@ def cmd_read(sensor: MHZ14A) -> None:
 def cmd_sample(sensor: MHZ14A, interval: float, count: int, json_output: bool) -> None:
     """Execute sample command."""
     readings = []
-    
+
     try:
         for i in range(count):
             if i > 0:
                 time.sleep(interval)
-                
+
             timestamp = datetime.now().isoformat()
             ppm = sensor.read_co2()
-            
+
             if json_output:
                 readings.append({"timestamp": timestamp, "ppm": ppm})
             else:
                 print(f"{timestamp}: {ppm} ppm")
-                
+
     except MHZ14AError as e:
         error_exit(f"Failed to read CO₂: {e}")
     except KeyboardInterrupt:
         if json_output and readings:
             print(json.dumps(readings))
         sys.exit(130)  # 128 + SIGINT
-        
+
     if json_output:
         print(json.dumps(readings))
 
@@ -194,11 +194,11 @@ def main() -> None:
     """Main entry point for CLI."""
     parser = create_parser()
     args = parser.parse_args()
-    
+
     if not args.command:
         parser.print_help()
         sys.exit(1)
-        
+
     try:
         with MHZ14A(args.port, args.timeout) as sensor:
             if args.command == "read":
@@ -213,8 +213,8 @@ def main() -> None:
                 enable = args.on
                 cmd_abc(sensor, enable)
             elif args.command == "range":
-                cmd_range(sensor, getattr(args, 'max'))
-                
+                cmd_range(sensor, args.max)
+
     except MHZ14AError as e:
         error_exit(str(e))
     except KeyboardInterrupt:
