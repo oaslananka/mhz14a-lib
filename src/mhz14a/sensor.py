@@ -150,7 +150,7 @@ class MHZ14A:
 
         for attempt in range(3):  # Original + 2 retries
             try:
-                response = self.ser.read(RESPONSE_SIZE)
+                response: bytes = self.ser.read(RESPONSE_SIZE)
                 if len(response) != RESPONSE_SIZE:
                     raise MHZ14AError(
                         f"Incomplete response: {len(response)}/{RESPONSE_SIZE} bytes"

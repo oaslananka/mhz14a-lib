@@ -31,7 +31,7 @@ jobs:
       run: pip install -e .
 
     - name: Install development dependencies
-      run: pip install ruff mypy pytest build
+      run: pip install ruff mypy pytest build types-pyserial
 
     - name: Run ruff linting
       run: ruff check .
