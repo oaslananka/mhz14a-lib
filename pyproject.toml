@@ -12,6 +12,9 @@ requires-python = ">=3.8"
 authors = [
     {name = "Osman Aslan", email = "admin@oaslananka.me"},
 ]
+maintainers = [
+    {name = "Osman Aslan", email = "admin@oaslananka.me"},
+]
 keywords = ["mhz14a", "co2", "sensor", "uart", "raspberry-pi"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -44,9 +47,10 @@ dev = [
 mhz14a = "mhz14a.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/oaslananka/mhz14a"
-Repository = "https://github.com/oaslananka/mhz14a.git"
-Issues = "https://github.com/oaslananka/mhz14a/issues"
+Homepage = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib"
+Repository = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib.git"
+Issues = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib/issues"
+Documentation = "https://github.com/KULLANICI_ADINIZ/mhz14a-lib#readme"
 
 [tool.hatch.version]
 source = "vcs"
